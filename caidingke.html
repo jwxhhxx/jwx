@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="go()">
+    
+</body>
+<script>
+    function go()
+    {
+var r=Math.random();
+document.body.innerHTML=r;
+if(r<0.33333)
+{document.body.innerHTML="石头";
+
+    }
+else if(r<0.66667)
+{document.body.innerHTML="剪刀";}
+else
+{
+    document.body.innerHTML="布";
+}
+}
+</script>
+</html>
