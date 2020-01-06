@@ -1,258 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
- <style>
-     body{
-         padding: 0px;
-         margin: 0px;
-     }
- img {
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        img {
             width: 100%;
         }
-
+        
         .li_img {
             width: 1820px;
             float: left;
             list-style: none;
             height: 630px;
         }
-
+        
         .ul_img {
             width: 5760px;
             padding: 0px;
             margin: 0px;
             transition: all 2s;
         }
-
+        
         .main_div {
             width: 100%;
             overflow: hidden;
             position: relative;
-        
-
         }
-
+        
         .arrows {
             z-index: 9999;
             position: absolute;
             padding-top: 230px;
             width: 100%;
         }
-
+        
         .arrows span {
             font-size: 3em;
             color: seashell;
         }
-
+        
         .arrows span:hover {
             /*变小手*/
             cursor: pointer;
             background-color: rgba(192, 192, 192, 0.29);
         }
-        .div_b{
+        
+        .div_b {
             width: 100%;
             margin-top: 610px;
-            position:absolute;
-          padding-left: 300px;
+            position: absolute;
+            padding-left: 300px;
         }
+        
         .div_btn {
             float: left;
             border-radius: 100px;
-            background-color:darkslateblue;
-            width: 60px;
+            background-color: darkslateblue;
+            width: 50px;
             height: 10px;
             margin-left: 30px;
-       opacity: 0.5;
+            opacity: 0.5;
         }
-
+        
         .div_btn:hover {
-            background-color:bisque;
+            background-color: bisque;
         }
-#picture{
-    padding-top: 10px;
-}
- #picture img{
+        
+        #picture {
+            padding-top: 10px;
+        }
+        
+        #picture img {
+            width: 50px;
+            height: 40px;
+        }
+        
+        .li_dh,
+        a {
+            list-style: none;
+            text-decoration: none;
+            color: azure;
+        }
+        
+        .li_dh {
+            float: left;
+            margin-right: 20px;
+        }
+        
+        .a1:hover {
+            color: bisque;
+        }
+        
+        #dh_2,
+        #dh_3 {
+            margin-left: 200px;
+            padding-top: 20px;
+        }
+        
+        #dh_1 {
+            padding-top: 10px;
+            text-decoration-color: azure;
+            margin-left: 50px;
+            font-size: xx-large;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        
+        .daohao {
+            height: 60px;
+            background-color: cadetblue;
+        }
+    </style>
+    <script>
+        //跑动的次数
+        var count = 0;
+        //动画的执行方向
+        var isgo = false;
+        //定义计时器对象
+        var timer;
 
-width:50px;
-height: 40px;
-    }
-.li_dh,a{
-    list-style: none;
-  text-decoration: none;
-  color: azure;
-}
-.li_dh{
-    
-    float: left;
-    margin-right: 20px;
-}
-.a1:hover{
-    color: bisque;
-}
-#dh_2,#dh_3{
-    margin-left: 200px;
-    padding-top: 20px;
-}
-#dh_1{
-    padding-top: 10px;
-    text-decoration-color: azure;
-    margin-left: 50px;
-    font-size:xx-large;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.daohao
-{height: 60px;
-    background-color:cadetblue;
-   
-}
-
- </style>
-<script>
-    //跑动的次数
-    var count = 0;
-    //动画的执行方向
-    var isgo = false;
-    //定义计时器对象
-    var timer;
-
-    window.onload = function () {
-        /*获取ul元素*/
-        var ul_img = document.getElementsByClassName("ul_img")[0];
-        //获取所有的li图片元素
-        var li_img = document.getElementsByClassName("li_img");
-        //获取控制方向的箭头元素
-        var arrow = document.getElementsByClassName("arrow");
-        //获取所有按钮元素
-        var div_btn = document.getElementsByClassName("div_btn");
-        div_btn[0].style.backgroundColor = "aqua";
+        window.onload = function() {
+            /*获取ul元素*/
+            var ul_img = document.getElementsByClassName("ul_img")[0];
+            //获取所有的li图片元素
+            var li_img = document.getElementsByClassName("li_img");
+            //获取控制方向的箭头元素
+            var arrow = document.getElementsByClassName("arrow");
+            //获取所有按钮元素
+            var div_btn = document.getElementsByClassName("div_btn");
+            div_btn[0].style.backgroundColor = "aqua";
 
 
-        /*定义计时器，控制图片移动*/
-        showtime();
-        function showtime() {
-            timer = setInterval(function () {
-                if (isgo == false) {
-                    count++;
+            /*定义计时器，控制图片移动*/
+            showtime();
+
+            function showtime() {
+                timer = setInterval(function() {
+                    if (isgo == false) {
+                        count++;
+                        ul_img.style.transform = "translate(" + -1920 * count + "px)";
+                        if (count >= li_img.length - 1) {
+                            count = li_img.length - 1;
+                            isgo = true;
+                        }
+                    } else {
+                        count--;
+                        ul_img.style.transform = "translate(" + -1920 * count + "px)";
+                        if (count <= 0) {
+                            count = 0;
+                            isgo = false;
+                        }
+                    }
+
+                    for (var i = 0; i < div_btn.length; i++) {
+                        div_btn[i].style.backgroundColor = "aquamarine";
+                    }
+
+                    div_btn[count].style.backgroundColor = "aqua";
+
+                }, 4000)
+            }
+
+            /*鼠标进入左右方向键操作*/
+            for (var i = 0; i < arrow.length; i++) {
+                //鼠标悬停时
+                arrow[i].onmouseover = function() {
+                        //停止计时器
+                        clearInterval(timer);
+                    }
+                    //鼠标离开时
+                arrow[i].onmouseout = function() {
+                    //添加计时器
+                    showtime();
+                }
+                arrow[i].onclick = function() {
+                    //区分左右
+                    if (this.title == 0) {
+                        count++;
+                        if (count > 2) {
+                            count = 0;
+                        }
+                    } else {
+                        count--;
+                        if (count < 0) {
+                            count = 2;
+                        }
+                    }
+
                     ul_img.style.transform = "translate(" + -1920 * count + "px)";
-                    if (count >= li_img.length - 1) {
-                        count = li_img.length - 1;
+
+                    for (var i = 0; i < div_btn.length; i++) {
+                        div_btn[i].style.backgroundColor = "aquamarine";
+                    }
+                    div_btn[count].style.backgroundColor = "aqua";
+                }
+            }
+
+            //鼠标悬停在底部按钮的操作
+            for (var b = 0; b < div_btn.length; b++) {
+                div_btn[b].index = b;
+                div_btn[b].onmouseover = function() {
+
+                    clearInterval(timer);
+
+                    for (var a = 0; a < div_btn.length; a++) {
+                        div_btn[a].style.backgroundColor = "aquamarine";
+                    }
+                    div_btn[this.index].style.backgroundColor = "aqua";
+                    //让count值对应
+                    //为了控制方向
+                    if (this.index == 2) {
                         isgo = true;
                     }
-                }
-                else {
-                    count--;
-                    ul_img.style.transform = "translate(" + -1920 * count + "px)";
-                    if (count <= 0) {
-                        count = 0;
+                    if (this.index == 0) {
                         isgo = false;
                     }
+                    count = this.index;
+                    ul_img.style.transform = "translate(" + -1920 * this.index + "px)";
                 }
-
-                for (var i = 0; i < div_btn.length; i++) {
-                    div_btn[i].style.backgroundColor = "aquamarine";
+                div_btn[b].onmouseout = function() {
+                    //添加计时器
+                    showtime();
                 }
-
-                div_btn[count].style.backgroundColor = "aqua";
-
-            }, 4000)
-        }
-
-        /*鼠标进入左右方向键操作*/
-        for (var i = 0; i < arrow.length; i++) {
-            //鼠标悬停时
-            arrow[i].onmouseover = function () {
-                //停止计时器
-                clearInterval(timer);
-            }
-            //鼠标离开时
-            arrow[i].onmouseout = function () {
-                //添加计时器
-                showtime();
-            }
-            arrow[i].onclick = function () {
-                //区分左右
-                if (this.title == 0) {
-                    count++;
-                    if (count > 2) {
-                        count = 0;
-                    }
-                }
-                else {
-                    count--;
-                    if (count < 0) {
-                        count = 2;
-                    }
-                }
-
-                ul_img.style.transform = "translate(" + -1920 * count + "px)";
-
-                for (var i = 0; i < div_btn.length; i++) {
-                    div_btn[i].style.backgroundColor = "aquamarine";
-                }
-                div_btn[count].style.backgroundColor = "aqua";
             }
         }
-
-        //鼠标悬停在底部按钮的操作
-        for (var b = 0; b < div_btn.length; b++) {
-            div_btn[b].index = b;
-            div_btn[b].onmouseover = function () {
-
-                clearInterval(timer);
-
-                for (var a = 0; a < div_btn.length; a++) {
-                    div_btn[a].style.backgroundColor = "aquamarine";
-                }
-                div_btn[this.index].style.backgroundColor = "aqua";
-                //让count值对应
-                //为了控制方向
-                if (this.index == 2) {
-                    isgo = true;
-                }
-                if (this.index == 0) {
-                    isgo = false;
-                }
-                count = this.index;
-                ul_img.style.transform = "translate(" + -1920 * this.index + "px)";
-            }
-            div_btn[b].onmouseout = function () {
-                //添加计时器
-                showtime();
-            }
-        }
-    }
-</script>
+    </script>
 
 </head>
+
 <body>
     <div class="daohao">
         <li class="li_dh" id="dh_1"><a class="a1" href="">MY Blog</a> </li>
-        <li class="li_dh" id="picture"><a href="" ><img src="image/zj.jpg" /></a></li>
-        <li class="li_dh"  id="dh_2"><a class="a1" href="">首页</a>  </li>
-        <li class="li_dh" id="dh_3" ><a class="a1" href="">与我相关</a> </li>
+        <li class="li_dh" id="picture">
+            <a href=""><img src="image/zj.jpg" /></a>
+        </li>
+        <li class="li_dh" id="dh_2"><a class="a1" href="">首页</a> </li>
+        <li class="li_dh" id="dh_3"><a class="a1" href="">与我相关</a> </li>
     </div>
     <div class="main_div">
-            <div class="arrows">
-                    <span title="1" class="arrow"><</span>
-                    <span title="0" class="arrow" style="float: right">></span>
-              </div>
-              <div> <ul class="ul_img">
-            <li class="li_img"><img src="image/1.png"/></li>
-            <li class="li_img"><img src="image/2.png"/></li>
-            <li class="li_img"><img src="image/3.png"/></li>
-           
-      </ul></div>
-      <div style="margin-left:300px" class="div_b">
+        <div class="arrows">
+            <span title="1" class="arrow"><</span>
+            <span title="0" class="arrow" style="float: right">></span>
+        </div>
+        <div>
+            <ul class="ul_img">
+                <li class="li_img"><img src="image/1.png" /></li>
+                <li class="li_img"><img src="image/2.png" /></li>
+                <li class="li_img"><img src="image/3.png" /></li>
+
+            </ul>
+        </div>
+        <div style="margin-left:300px" class="div_b">
             <div class="div_btn"></div>
             <div class="div_btn"></div>
             <div class="div_btn"></div>
-           
+
+        </div>
     </div>
-    </div>
-    
+
 </body>
+
 </html>
